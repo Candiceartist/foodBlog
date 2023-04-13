@@ -1,6 +1,7 @@
 
 require('../models/database');
-const Category = require('../models/Category')
+const Category = require('../models/Category');
+const Recipe = require('../models/Recipe')
 
 exports.homepage = async(req, res) => {
     try {
