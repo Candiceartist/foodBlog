@@ -14,6 +14,10 @@ app.use(express.static('public'));
 app.use(expressLayouts);
 
 app.set('layout', './layouts/main')
+//  set view engine to ejs
+app.set('view engine', 'ejs');
+
+
 // use all routes
 const routes = require('./server/routes/recipeRoutes.js')
 app.use('/', routes);
