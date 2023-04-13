@@ -9,19 +9,21 @@
   </ol>
 </nav>
 
-<% if(categories != '') { %> <% categories.forEach(function(category, index) {
-%>
-<a
-  href="/categories/<%- category.name %>"
-  class="col text-center category__Link"
->
-  <div class="category__img shadow">
-    <img
-      src="img/<%- category.image %>"
-      alt="<%- category.name %>"
-      Loading="lazy"
-    />
-  </div>
-  <div class="pt-1"><%- category.name %></div>
-</a>
-<% }) %> <% } %>
+<div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3 mb4">
+  <% if(categories != '') { %> <% categories.forEach(function(category, index) {
+  %>
+  <a
+    href="/categories/<%- category.name %>"
+    class="col text-center category__Link"
+  >
+    <div class="category__img shadow">
+      <img
+        src="img/<%- category.image %>"
+        alt="<%- category.name %>"
+        Loading="lazy"
+      />
+    </div>
+    <div class="pt-1"><%- category.name %></div>
+  </a>
+  <% }) %> <% } %>
+</div>
