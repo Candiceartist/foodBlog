@@ -23,3 +23,17 @@
     width: 100%;
     object-fit: cover;
 }
+.category__img--Large {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 250px;
+    margin-bottom: 10px;
+    box-shadow: 0px 3px 6px rgba(0,0,0,.16);
+    overflow: hidden;
+    border-radius: 8px;
+}
+.category__img--Large img {
+    height: 100%;
+    object-fit: cover;
+}
