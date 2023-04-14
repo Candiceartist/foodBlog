@@ -26,3 +26,35 @@ exports.exploreCategories = async(req, res) => {
         res.status(500).send({message: error.message || "Error Occured"});
     }
 }
+
+async function insertDummyCategoryData(){
+    try {
+        await Category.insertMany([
+            {
+                "name": "Italian",
+                "image": "italian-food.jpg"
+            },
+            {
+                "name": "Japanese",
+                "image": "japanese-food.jpg"
+            },
+            {
+                "name": "Korean",
+                "image": "korean-food.jpg"
+            },
+            {
+                "name": "Turkish",
+                "image": "turkish-food.jpg"
+            },
+            {
+                "name": "Carribean",
+                "image": "carribean-food.jpg"
+            },
+
+        ]);
+    } catch (error) {
+        console.log('err', + error)
+    }
+}
+
+insertDummyCategoryData();
