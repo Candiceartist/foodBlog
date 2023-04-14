@@ -7,9 +7,11 @@ exports.homepage = async(req, res) => {
     try {
     const limitNumber = 5;
     const categories = await Category.find({}).limit(limitNumber);
+    const latest = await Recipe.find({}).sort({_id:-1}).limit(limitNumber);
+    
+    const food = { latest };
 
-
-    res.render('index', {title:"Good Eats-Food Blog Home", categories});
+    res.render('index', {title:"Good Eats-Food Blog Home", categories, food});
     } catch (error) {
         res.status(500).send({message: error.message || "Error Occured"});
     }
@@ -19,11 +21,21 @@ exports.exploreCategories = async(req, res) => {
     try {
     const limitNumber = 20;
     const categories = await Category.find({}).limit(limitNumber);
-    const latest = await Recipe.find({}).sort({_id:-1}).limit(limitNumber);
 
-    const food = { latest };
 
-    res.render('categories', {title:"Good Eats-Food Blog Categories", categories, food });
+    res.render('categories', {title:"Good Eats-Food Blog Categories", categories});
+    } catch (error) {
+        res.status(500).send({message: error.message || "Error Occured"});
+    }
+}
+
+exports.exploreRecipe = async(req, res) => {
+    try {
+    let recipeId = req.params.id;
+
+    const recipe = await Recipe.findById(recipeId);
+
+    res.render('recipe', {title:"Good Eats-Food Blog Recipe", recipe});
     } catch (error) {
         res.status(500).send({message: error.message || "Error Occured"});
     }
