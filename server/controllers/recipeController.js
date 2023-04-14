@@ -21,7 +21,9 @@ exports.exploreCategories = async(req, res) => {
     const categories = await Category.find({}).limit(limitNumber);
     const latest = await Recipe.find({}).sort({_id:-1}).limit(limitNumber);
 
-    res.render('categories', {title:"Good Eats-Food Blog Categories", categories});
+    const food = { latest };
+
+    res.render('categories', {title:"Good Eats-Food Blog Categories", categories, food });
     } catch (error) {
         res.status(500).send({message: error.message || "Error Occured"});
     }
