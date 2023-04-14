@@ -8,8 +8,9 @@ exports.homepage = async(req, res) => {
     const limitNumber = 5;
     const categories = await Category.find({}).limit(limitNumber);
     const latest = await Recipe.find({}).sort({_id:-1}).limit(limitNumber);
+    const chinese = await Recipe.find({'category': 'Chinese'}).limit(limitNumber);
     
-    const food = { latest };
+    const food = { latest, chinese };
 
     res.render('index', {title:"Good Eats-Food Blog Home", categories, food});
     } catch (error) {
