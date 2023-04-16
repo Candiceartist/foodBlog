@@ -64,6 +64,16 @@ exports.searchRecipe = async(req, res) => {
     }
 }
 
+exports.exploreLatest = async(req, res) => {
+    try {
+    const limitNumber = 20;
+    const recipe = await Recipe.find({}).sort({ _id: -1 }).limit(limitNumber);
+    res.render('explore-latest', {title:"Good Eats-Food Blog Explore Latest", recipe});
+    } catch (error) {
+        res.status(500).send({message: error.message || "Error Occured"});
+    }
+}
+
 // async function insertDummyRecipeData(){
 //     try {
 //         await Recipe.insertMany([
