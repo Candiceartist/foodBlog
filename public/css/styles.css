@@ -1,3 +1,9 @@
+body {
+    background-image: url("food-wallpaper.jpeg");
+    background-repeat: no-repeat, repeat;
+    background-color: #cccccc;
+  }
+
 .category__Link {
     text-align: center;
     display: block;

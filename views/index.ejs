@@ -95,7 +95,8 @@ latest start -->
     <a href="/categories/Chinese" class="ms-auto category__Link">View More</a>
   </div>
   <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
-    <% if(food != '') { %> <% food.chinese.forEach(function(recipe, index) { %>
+    <% if(typeof food.chinese !== 'undefined && food.chinese.length > 0') { %>
+    <% food.chinese.forEach(function(recipe, index) { %>
     <a href="/recipe/<%= recipe._id %>" class="col text-center category__Link">
       <div class="category__img--Large shadow">
         <img
