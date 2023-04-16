@@ -85,6 +85,12 @@ exports.exploreRandom = async(req, res) => {
     }
 }
 
+exports.submitRecipe = async(req, res) => {
+     res.render('submit-recipe', {title:"Good Eats-Food Blog-Submit Recipe"});
+
+  }
+
+
 // async function insertDummyRecipeData(){
 //     try {
 //         await Recipe.insertMany([
