@@ -131,6 +131,27 @@ exports.submitRecipeOnPost = async(req, res) => {
     }
 }
 
+// async function updateRecipe(){
+
+//     try {
+//       const res = await Recipe.updateOne({name:'New Recipe'}, {name: 'New Recipe Updated'});
+//       res.n;
+//       res.nModified;
+//     } catch (error) {
+//         (console.log(error))
+//     }
+// }
+// updateRecipe();
+
+// async function deleteRecipe(){
+
+//     try {
+//       const res = await Recipe.deleteOne({name:'New Recipe'}, {name: 'New Recipe Updated'});
+//     } catch (error) {
+//         (console.log(error))
+//     }
+// }
+// deleteRecipe();
 
 // async function insertDummyRecipeData(){
 //     try {
