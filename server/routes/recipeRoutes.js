@@ -18,6 +18,8 @@ router.delete('/recipe/:id', async (req, res) => {
     await Recipe.findByIdAndDelete(req.params.id)
     res.redirect('/')
   })
+router.get('/edit/:id', recipeController.editRecipe);
+router.post('/edit/:id', recipeController.editRecipeOnPost);
 
 
 module. exports = router;

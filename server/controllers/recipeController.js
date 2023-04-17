@@ -112,6 +112,8 @@ exports.submitRecipeOnPost = async(req, res) => {
         })
 
     }
+
+   
     
 
     const newRecipe = new Recipe({
@@ -130,6 +132,57 @@ exports.submitRecipeOnPost = async(req, res) => {
         res.redirect('/submit-recipe');
     }
 }
+
+exports.editRecipe = async(req, res) => {
+    const infoErrorsObject = req.flash('infoErrors');
+    const infoSubmitObj = req.flash('infoSubmit');
+
+     res.render('edit', {title:"Good Eats-Food Blog-Edit Recipe", infoErrorsObject, infoSubmitObj});
+}
+
+exports.editRecipeOnPost = async(req, res) => {
+    try{
+
+    let imageUploadFile;
+    let uploadPath;
+    let newImagename;
+
+    if(!req.files || Object.keys(req.files).length === 0){
+        console.log('No files were uploaded.');
+    } else {
+
+        imageUploadFile = req.files.image;
+        newImagename = Date.now() + imageUploadFile.name;
+
+        uploadPath = require('path').resolve('./' + 'public/uploads/' + newImagename);
+
+        imageUploadFile.mv(uploadPath, function(err){
+            if(err) return res.status(500).send(err);
+        })
+
+    }
+
+   
+    
+
+    const newRecipe = new Recipe({
+        name: req.body.name,
+        description: req.body.description,
+        email: req.body.email,
+        ingredients: req.body.ingredients,
+        category:req.body.caegory,
+        image: newImagename
+    });
+    await newRecipe.save();
+    req.flash('infoSubmit', 'Thank you for sharing your recipe.')
+    res.redirect('/recipe/:id');
+    } catch (error) {
+        req.flash('infoErrors',error)
+        res.redirect('/recipe/:id');
+    }
+}
+
+
 
 // async function updateRecipe(){
 
