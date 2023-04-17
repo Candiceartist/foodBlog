@@ -4,6 +4,7 @@ const fileUpload = require('express-fileupload');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const flash = require('connect-flash');
+const methodOverride = require('method-override');
 
 
 const app = express();
@@ -24,6 +25,7 @@ app.use(session({
 }));
 app.use(flash());
 app.use(fileUpload());
+app.use(methodOverride('_method'))
 
 app.set('layout', './layouts/main')
 //  set view engine to ejs

@@ -39,10 +39,19 @@
           <% }) %>
         </ul>
       </div>
-      <a href="/recipe/<%- recipe._id %>" class="btn btn-info">Edit</a>
+      <div>
+        <a href="/recipe/<%- recipe._id %>" class="btn btn-info">Edit</a>
+        <form
+          action="/recipe/<%= recipe.id %>?_method=DELETE"
+          method="POST"
+          class="d-inline"
+        >
+          <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+      </div>
     </div>
   </div>
+  <% } else { %>
+  <p>No item found.</p>
+  <%} %>
 </div>
-<% } else { %>
-<p>No item found.</p>
-<%} %>
