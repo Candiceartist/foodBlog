@@ -86,9 +86,50 @@ exports.exploreRandom = async(req, res) => {
 }
 
 exports.submitRecipe = async(req, res) => {
-     res.render('submit-recipe', {title:"Good Eats-Food Blog-Submit Recipe"});
+    const infoErrorsObject = req.flash('infoErrors');
+    const infoSubmitObj = req.flash('infoSubmit');
 
-  }
+     res.render('submit-recipe', {title:"Good Eats-Food Blog-Submit Recipe", infoErrorsObject, infoSubmitObj});
+}
+exports.submitRecipeOnPost = async(req, res) => {
+    try{
+
+    let imageUploadFile;
+    let uploadPath;
+    let newImagename;
+
+    if(!req.files || Object.keys(req.files).length === 0){
+        console.log('No files were uploaded.');
+    } else {
+
+        imageUploadFile = req.files.image;
+        newImagename = Date.now() + imageUploadFile.name;
+
+        uploadPath = require('path').resolve('./' + 'public/uploads/' + newImagename);
+
+        imageUploadFile.mv(uploadPath, function(err){
+            if(err) return res.status(500).send(err);
+        })
+
+    }
+    
+
+    const newRecipe = new Recipe({
+        name: req.body.name,
+        description: req.body.description,
+        email: req.body.email,
+        ingredients: req.body.ingredients,
+        category:req.body.caegory,
+        image: newImagename
+    });
+    await newRecipe.save();
+    req.flash('infoSubmit', 'Thank you for sharing your recipe.')
+    res.redirect('/submit-recipe');
+    } catch (error) {
+        req.flash('infoErrors',error)
+        res.redirect('/submit-recipe');
+    }
+}
 
 
 // async function insertDummyRecipeData(){

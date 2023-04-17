@@ -7,9 +7,16 @@
     </p>
   </div>
 </div>
+<% if(infoSubmitObj != ''){ %>
+<div class="col-12 alert alert-success" role="alert"><%= infoSubmitObj %></div>
+<% } %> <% if(infoErrorsObject != ''){ %>
+<div class="alert alert-danger" role="alert">
+  <%= infoErrorsObject[0].message %>
+</div>
+<% } %>
 
 <div class="row justify-content-center">
-  <div class="col-8">
+  <div class="col-12">
     <form action="/submit-recipe" enctype="multipart/form-data" method="POST">
       <div class="row g-3">
         <div class="col-12">
