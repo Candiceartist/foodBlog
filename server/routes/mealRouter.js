@@ -1,26 +1,29 @@
 const express = require('express')
 const mealRouter = express.Router()
 const axios = require('axios')
+const expressLayouts = require('express-ejs-layouts');
+let ejs = require('ejs');
 
 
 
 
 
-mealRouter.get('', async(req, res) => {
+mealRouter.get('', async (req, res) => {
     try {
-     const newAPI = await axios.get(`https://www.themealdb.com/api/json/v1/1/random.php`)
-     res.render('new',{ meals : newAPI.data })
-
+        const newAPI = await axios.get('https://www.themealdb.com/api/json/v1/1/random.php')
+        //  res.render('new',{ meals : newAPI.data })
+        const meals = newAPI.data.meals[0]
+        console.log(meals.strMeal)
     } catch (error) {
-        if(error.response) {
-            console.log(err.response.data)
-            console.log(err.response.status)
-            console.log(err.response.headers)
+        if (error.response) {
+            console.log(error.response.data)
+            console.log(error.response.status)
+            console.log(error.response.headers)
 
-        } else if( err.request) {
-          console.log(err.request)
+        } else if (error.request) {
+            console.log(error.request)
         } else {
-            console.error('Error', err.message)
+            console.error('Error', error.message)
         }
 
     }
@@ -28,4 +31,4 @@ mealRouter.get('', async(req, res) => {
 })
 
 
-  module.exports = mealRouter
+module.exports = mealRouter

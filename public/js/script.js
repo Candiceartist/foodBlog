@@ -1,7 +1,6 @@
 let addIngredientsBtn = document.getElementById('addIngredientsBtn');
 let ingredientList = document.querySelector('.ingredientList');
 let ingredientDiv = document.querySelectorAll('.ingredientDiv')[0];
-let addMeals = document.getElementById('addMeals');
 
 addIngredientsBtn.addEventListener('click',function(){
     let newIngredients = ingredientDiv.cloneNode(true);
@@ -9,5 +8,3 @@ addIngredientsBtn.addEventListener('click',function(){
     input.value = '';
     ingredientList.appendChild(newIngredients);
 });
- 
-

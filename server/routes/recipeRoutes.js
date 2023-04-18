@@ -1,11 +1,13 @@
 const express = require('express');
 const router = express.Router();
+const mealRouter = express.Router();
 const recipeController = require('../controllers/recipeController');
 const Recipe = require('../models/Recipe');
 const axios = require('axios')
 
 
 // app routes
+
 router.get('/', recipeController.homepage);
 router.get('/categories', recipeController.exploreCategories);
 router.get('/recipe/:id', recipeController.exploreRecipe);
