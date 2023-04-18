@@ -8,9 +8,24 @@ const methodOverride = require('method-override');
 
 
 const app = express();
+
 const port = process.env.Port || 3000;
 
+
 require('dotenv').config();
+
+
+
+
+// app.get('/search', async (req, res) => {
+//     let searchInput = req.body.searchTerm;
+//     fetch(`www.themealdb.com/api/json/v1/1/filter.php?i=${searchInput}`)
+//     .then(response => response.json());
+
+
+//   })
+
+
 
 // middleware
 app.use(express.urlencoded( {extended:true} ));
@@ -33,6 +48,8 @@ app.set('view engine', 'ejs');
 
 
 // use all routes
+const outsideroute = require('./server/routes/mealRouter')
+app.use("/new",outsideroute)
 const routes = require('./server/routes/recipeRoutes.js')
 app.use('/', routes);
 

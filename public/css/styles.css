@@ -1,6 +1,6 @@
 body {
-    background-image: url("food-wallpaper.jpeg");
-    background-repeat: no-repeat, repeat;
+    background-image: url("/img/food-wallpaper.jpeg");
+    background-repeat: repeat, repeat;
     background-color: #cccccc;
   }
 

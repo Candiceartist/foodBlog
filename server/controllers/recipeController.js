@@ -3,14 +3,16 @@ require('../models/database');
 const Category = require('../models/Category');
 const Recipe = require('../models/Recipe')
 
+
 exports.homepage = async(req, res) => {
     try {
     const limitNumber = 5;
     const categories = await Category.find({}).limit(limitNumber);
     const latest = await Recipe.find({}).sort({_id:-1}).limit(limitNumber);
     const chinese = await Recipe.find({'category': 'Chinese'}).limit(limitNumber);
+    const american = await Recipe.find({'category': 'American'}).limit(limitNumber);
     
-    const food = { latest, chinese };
+    const food = { latest, chinese, american };
 
     res.render('index', {title:"Good Eats-Food Blog Home", categories, food});
     } catch (error) {
@@ -58,11 +60,15 @@ exports.searchRecipe = async(req, res) => {
     let searchTerm = req.body.searchTerm;
     let recipe = await Recipe.find( { $text: { $search: searchTerm, $diacriticSensitive: true} });
     
+    
     res.render('search', { title: 'Good Eats-Food Blog - Search', recipe});
     } catch (error) {
         res.status(500).send({message: error.message || "Error Occured" });
     }
 }
+
+
+
 
 exports.exploreLatest = async(req, res) => {
     try {
