@@ -13,7 +13,7 @@ mealRouter.get('', async (req, res) => {
         const newAPI = await axios.get('https://www.themealdb.com/api/json/v1/1/random.php')
         //  res.render('new',{ meals : newAPI.data })
         const meals = newAPI.data.meals[0]
-        console.log(meals.strMeal)
+        res.render('new', { meals: meals })
     } catch (error) {
         if (error.response) {
             console.log(error.response.data)
