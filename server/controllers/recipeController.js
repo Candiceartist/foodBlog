@@ -150,7 +150,8 @@ exports.editRecipe = async(req, res) => {
 
 exports.editRecipeOnPost = async(req, res) => {
     try{
-
+    let recipeId = req.params.id;
+    const recipe = await Recipe.findById(recipeId);
     let imageUploadFile;
     let uploadPath;
     let newImagename;

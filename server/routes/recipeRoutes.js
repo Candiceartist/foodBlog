@@ -18,15 +18,15 @@ router.get('/explore-random', recipeController.exploreRandom);
 router.get('/submit-recipe', recipeController.submitRecipe);
 router.post('/submit-recipe', recipeController.submitRecipeOnPost);
 router.delete('/recipe/:id', async (req, res) => {
-    await Recipe.findByIdAndDelete(req.params.id)
-    res.redirect('/')
-  })
+  await Recipe.findByIdAndDelete(req.params.id)
+  res.redirect('/')
+})
 router.get('/edit/:id', recipeController.editRecipe);
-router.post('/edit/:id', recipeController.editRecipeOnPost);
+router.put('/recipe/:id', recipeController.editRecipeOnPost);
 
 
 
 
 
 
-module. exports = router;
+module.exports = router;
